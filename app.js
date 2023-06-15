@@ -87,6 +87,25 @@ app.post('/delete-post', (req, res) => {
     });
 });
 
+app.post('/delete-comment', (req, res) => {
+    const 게시글고유번호 = req.body.게시글고유번호;
+    const 고유번호 = req.body.고유번호;
+    const 비밀번호 = req.body.비밀번호;
+    const query = `DELETE FROM \`댓글\`WHERE \`고유번호\`=${고유번호} AND \`비밀번호\` = \'${비밀번호}\';`;
+    maria.query(query, (error, results) =>{
+        if(error) throw error;
+        if (results.affectedRows > 0) {
+            const message = "댓글 삭제 성공";
+            console.log(message);                        
+        } else {
+            const message = "비밀번호가 틀렸습니다."
+            console.log(message);
+            return res.status(400).send(message);
+        }
+        return res.redirect(`/post?글번호=${게시글고유번호}`);
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`서버가 실행됩니다. http://localhost:${port}`);

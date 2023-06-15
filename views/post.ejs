@@ -8,22 +8,30 @@
 <body>
     <table>
         <thead>
-            <tr>고유번호</tr>
-            <tr>작성자</tr>
-            <tr>제목</tr>
-            <tr>작성일자</tr>        
-            <tr>내용</tr>    
+            <tr>
+                <td>고유번호</td>
+                <td>작성자</td>
+                <td>제목</td>
+                <td>작성일자</td>        
+            </tr>
         </thead>
         <tbody>
             <tr>
+                <td><%= post[0].고유번호 %></td>
+                <td><%= post[0].작성자 %></td>
+                <td><%= post[0].제목 %></td>
+                <td><%= post[0].작성일자 %></td>                
+            </tr>
+            <tr>
                 <td>
-                    <%= post[0].고유번호 %>
-                    <%= post[0].작성자 %>
-                    <%= post[0].제목 %>
-                    <%= post[0].작성일자 %>
+                    내용
+                </td>
+            </tr>  
+            <tr>
+                <td>
                     <%= post[0].내용 %>
                 </td>
-            </tr>   
+            </tr> 
             <td>
                 <button onclick="location.href='/'">돌아가기</button>
                 <button onclick="deletePost()">게시글 삭제</button>
@@ -36,30 +44,34 @@
         비밀번호 <input type="text" name="비밀번호"><br>
         내용 <input type="text" name="내용"><br>
         <input type="text" name="게시글고유번호" value="<%= post[0].고유번호 %>" style="display: none;">
-        <input type="submit">
+        <input type="submit" value="작성완료">
     </form>
     댓글목록
     <table>
         <thead>
-            <tr>고유번호</tr>
-            <tr>작성자</tr>
-            <tr>제목</tr>
-            <tr>작성일자</tr>            
+            <tr>
+                <td>작성자</td>
+                <td>제목</td>
+                <td>작성일자</td>
+                <td>내용</td>
+            </tr>
         </thead>
         <tbody>
             <% for(var i=0; i<comments.length; i++){ %>
                 <tr>
+                    <td><%= comments[i].작성자 %></td>
+                    <td><%= comments[i].제목 %></td>
+                    <td><%= comments[i].작성일자 %></td>
+                    <td><%= comments[i].내용 %></td>                    
+                </tr>
+                <tr>
                     <td>
-                        <%= comments[i].작성자 %>
-                        <%= comments[i].제목 %>
-                        <%= comments[i].작성일자 %>
-                        <%= comments[i].내용 %>
-
+                        <button onclick="deleteComment(<%= comments[i].고유번호 %>)">댓글 삭제</button>
                     </td>
                 </tr>
             <% } %>
         </tbody>
     </table>
-    <script src="script.js"></script>
+    <script src="delete.js"></script>
 </body>
 </html>
