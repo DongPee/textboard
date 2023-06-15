@@ -64,9 +64,27 @@ app.post('/commenting', (req, res) => {
     let query = `INSERT INTO \`댓글\` (\`작성자\`,\`내용\`,\`비밀번호\`,\`게시글 고유번호\`) VALUES ("${작성자}", "${내용}", "${비밀번호}", "${게시글고유번호}");`
     maria.query(query, (error) =>{
         if(error) throw error;
-        console.log("게시글 작성 성공");
+        console.log("댓글 작성 성공");
         return res.redirect(`/post?글번호=${게시글고유번호}`);
     })
+});
+
+app.post('/delete-post', (req, res) => {
+    let 글번호 = req.body.글번호;
+    let 비밀번호 = req.body.비밀번호;
+    let query = `DELETE FROM \`게시글\`WHERE \`고유번호\`=${글번호} AND \`비밀번호\` = \'${비밀번호}\';`;
+    maria.query(query, (error, results) =>{
+        if(error) throw error;
+        if (results.affectedRows > 0) {
+            const message = "게시글 삭제 성공";
+            console.log(message);                        
+        } else {
+            const message = "삭제할 게시글이 없습니다."
+            console.log(message);
+            return res.status(400).send(message);
+        }
+        return res.redirect('/');
+    });
 });
 
 
