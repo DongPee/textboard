@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>고유번호</tr>
+            <tr>작성자</tr>
+            <tr>제목</tr>
+            <tr>작성일자</tr>        
+            <tr>내용</tr>    
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <%= post[0].고유번호 %>
+                    <%= post[0].작성자 %>
+                    <%= post[0].제목 %>
+                    <%= post[0].작성일자 %>
+                    <%= post[0].내용 %>
+                </td>
+            </tr>   
+            <td>
+                <button onclick="location.href='/'">돌아가기</button>
+            </td>    
+        </tbody>
+    </table>
+    댓글작성
+    <form action="/commenting" method="post">
+        작성자 <input type="text" name="작성자"><br>
+        비밀번호 <input type="text" name="비밀번호"><br>
+        내용 <input type="text" name="내용"><br>
+        <input type="text" name="게시글고유번호" value="<%= post[0].고유번호 %>" style="display: none;">
+        <input type="submit">
+    </form>
+    댓글목록
+    <table>
+        <thead>
+            <tr>고유번호</tr>
+            <tr>작성자</tr>
+            <tr>제목</tr>
+            <tr>작성일자</tr>            
+        </thead>
+        <tbody>
+            <% for(var i=0; i<comments.length; i++){ %>
+                <tr>
+                    <td>
+                        <%= comments[i].작성자 %>
+                        <%= comments[i].제목 %>
+                        <%= comments[i].작성일자 %>
+                        <%= comments[i].내용 %>
+
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    
+    
+
+</body>
+</html>

@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>게시판</h1>
+    <button onclick="location.href='/write'">글 작성</button>
     <table>
         <thead>
             <tr>고유번호</tr>
@@ -16,10 +17,16 @@
             <tr>작성일자</tr>            
         </thead>
         <tbody>
-            <% for %>
-            <tr>
-                <td><%= posts[0].고유번호 %></td>
-            </tr>        
+            <% for(var i=0; i<posts.length; i++){ %>
+                <tr>
+                    <td onclick='location.href="/post?글번호=<%= posts[i].고유번호 %>"'>
+                        <%= posts[i].고유번호 %>
+                        <%= posts[i].작성자 %>
+                        <%= posts[i].제목 %>
+                        <%= posts[i].작성일자 %>
+                    </td>
+                </tr>
+            <% } %>
         </tbody>
     </table>
     <script src="get.js"></script>
