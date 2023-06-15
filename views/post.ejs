@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+    <button onclick="location.href='/'">돌아가기</button>
+    <button onclick="deletePost()">게시글 삭제</button>   
     <table>
         <thead>
             <tr>
@@ -23,26 +25,22 @@
                 <td><%= post[0].작성일자 %></td>                
             </tr>
             <tr>
-                <td>
+                <td colspan="4">
                     내용
                 </td>
             </tr>  
             <tr>
-                <td>
+                <td colspan="4">
                     <%= post[0].내용 %>
                 </td>
             </tr> 
-            <td>
-                <button onclick="location.href='/'">돌아가기</button>
-                <button onclick="deletePost()">게시글 삭제</button>
-            </td>    
         </tbody>
     </table>
     댓글작성
     <form action="/commenting" method="post">
-        작성자 <input type="text" name="작성자"><br>
-        비밀번호 <input type="text" name="비밀번호"><br>
-        내용 <input type="text" name="내용"><br>
+        작성자 <input type="text" name="작성자"required><br>
+        비밀번호 <input type="text" name="비밀번호"required><br>
+        내용 <input type="text" name="내용"required><br>
         <input type="text" name="게시글고유번호" value="<%= post[0].고유번호 %>" style="display: none;">
         <input type="submit" value="작성완료">
     </form>
@@ -50,8 +48,7 @@
     <table>
         <thead>
             <tr>
-                <td>작성자</td>
-                <td>제목</td>
+                <td>작성자</td> 
                 <td>작성일자</td>
                 <td>내용</td>
             </tr>
@@ -59,9 +56,8 @@
         <tbody>
             <% for(var i=0; i<comments.length; i++){ %>
                 <tr>
-                    <td><%= comments[i].작성자 %></td>
-                    <td><%= comments[i].제목 %></td>
-                    <td><%= comments[i].작성일자 %></td>
+                    <td><%= comments[i].작성자 %></td>                    
+                    <td><%= comments[i].시간.toISOString().split('T')[0] %></td>
                     <td><%= comments[i].내용 %></td>                    
                 </tr>
                 <tr>

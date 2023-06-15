@@ -7,10 +7,10 @@
 </head>
 <body>
     <form action="/writing" method="post">
-        작성자 <input type="text" name="작성자"><br>
-        비밀번호 <input type="text" name="비밀번호"><br>
-        제목 <input type="text" name="제목"><br>
-        내용 <input type="text" name="내용"><br>
+        작성자 <input type="text" name="작성자" required><br>
+        비밀번호 <input type="text" name="비밀번호"required><br>
+        제목 <input type="text" name="제목"required><br>
+        내용 <textarea type="text" name="내용" rows="30"required></textarea><br>
         <input type="submit" value="작성완료">
         <button onclick="location.href='/'">돌아가기</button>
     </form>
